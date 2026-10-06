@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Chet</title>
 <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
@@ -28,7 +28,7 @@
     --wa-input-bg: #2A3942;
   }
 
-  html, body { height: 100%; overflow: hidden; background: var(--wa-chat-bg); }
+  html, body { height: 100%; height: 100dvh; overflow: hidden; background: var(--wa-chat-bg); }
 
   /* ── LOGIN ── */
   #login-screen {
@@ -51,7 +51,7 @@
   #btn-google:hover { background: var(--wa-teal); }
 
   /* ── APP SHELL ── */
-  #app { display: none; height: 100vh; }
+  #app { display: none; height: 100vh; height: 100dvh; }
   #app.visible { display: flex; }
 
   /* ── SIDEBAR ── */
@@ -118,10 +118,11 @@
   }
 
   .new-room-btn {
-    margin: 12px; padding: 10px; border-radius: 8px; background: var(--wa-green);
+    margin: 12px; margin-bottom: max(12px, env(safe-area-inset-bottom));
+    padding: 12px; border-radius: 8px; background: var(--wa-green);
     color: #fff; border: none; font-size: 14px; cursor: pointer; font-weight: 500;
     display: flex; align-items: center; justify-content: center; gap: 6px;
-    transition: background .2s;
+    transition: background .2s; flex-shrink: 0;
   }
   .new-room-btn:hover { background: var(--wa-teal); }
 
@@ -511,7 +512,7 @@
   // ── send message ──
   function sendMessage() {
     const text = msgInput.value.trim();
-    if (!text || !currentRoom || !currentUser) return;
+      if (!text || !currentRoom || !currentUser) return;
 
     msgInput.value = '';
     msgInput.style.height = 'auto';
